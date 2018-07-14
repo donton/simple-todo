@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      noteTExt: ''
+    }
+  }
+
+  updateNoteText(noteText) {
+    this.setState({
+      noteText: noteText.target.value
+    })
+  }
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container">
+
+        <div className="header">Simple React Todo App</div>
+
+        <div className="btn">+</div>
+
+        <input type="text"
+            ref={((input) => {this.textInput = input})}
+            className="textInput"
+            value={this.state.noteText}
+            onChangeText={noteText => this.updateNoteText(noteText)}
+            onKeyPress={this.handleKeyPress.bind(this)}
+            />
+
       </div>
     );
   }
